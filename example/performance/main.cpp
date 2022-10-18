@@ -96,8 +96,8 @@ int main(int argc, char *argv[])
         printf("|-----------------------------------------------------------|\n");
         printf("| Name                   | %-32s |\n", cameraInfo.name().data());
         printf("| Camera Id              | %-32d |\n", cameraInfo.cameraId());
-        printf("| Max Height             | %-32d |\n", cameraInfo.maxHeight());
-        printf("| Max Width              | %-32d |\n", cameraInfo.maxWidth());
+        printf("| Max Height             | %-32ld |\n", cameraInfo.maxHeight());
+        printf("| Max Width              | %-32ld |\n", cameraInfo.maxWidth());
         printf("| Is Color               | %-32s |\n", cameraInfo.isColor() ? "yes": "no");
         printf("| Bayer Pattern          | %-32s |\n", cameraInfo.bayerPatternAsString().data());
         printf("| Supported Bins         | %-32s |\n", joinAsString(cameraInfo.supportedBins()).data());
@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
             bool isAutoControl;
             long value = option.get(&isAutoControl);
             printf(
-                "| %-24s | %-6d | %-6d | %-10d | %-8d | %-4s | %-48s |\n",
+                "| %-24s | %-6ld | %-6ld | %-10ld | %-8ld | %-4s | %-48s |\n",
                 option.name().data(),
                 value,
                 option.min(),
@@ -149,7 +149,7 @@ int main(int argc, char *argv[])
 
         printf("\nFind best bandwidth\n");
         printf("|---------------------------------------------------------------------------------------------------------------------------------|\n");
-        printf("| BW [%] |                                            Frame duration [ms]                                                         |\n");
+        printf("| BW [%%] |                                            Frame duration [ms]                                                         |\n");
         printf("|---------------------------------------------------------------------------------------------------------------------------------|\n");
 
         std::vector<uint8_t> frame(cameraInfo.maxWidth() * cameraInfo.maxHeight() * 2);
@@ -190,7 +190,7 @@ int main(int argc, char *argv[])
         }
         printf("|---------------------------------------------------------------------------------------------------------------------------------|\n");
 
-        printf("\nBest bandwidth is %d%%, it has %.1f FPS\n", bestBandWidth, 19 / bestTime);
+        printf("\nBest bandwidth is %ld%%, it has %.1f FPS\n", bestBandWidth, 19 / bestTime);
         
         camera.stopVideoCapture();
         camera.close();

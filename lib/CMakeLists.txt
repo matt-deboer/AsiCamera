@@ -46,17 +46,18 @@ target_include_directories(ASICamera2Boost PUBLIC ../libasicamera2/${ASIVERSION}
 
 target_link_libraries(ASICamera2Boost PRIVATE pthread usb-1.0)
 target_link_libraries(ASICamera2Boost PRIVATE
-    -Wl,--whole-archive
-    -Wl,--wrap=_ZN6CirBuf8ReadBuffEPhii
-    -Wl,--wrap=_ZN6CirBuf10InsertBuffEPhititiii
-    -Wl,--wrap=_ZN6CirBufC1El
-    -Wl,--wrap=_ZN11CCameraBase12InitVariableEv
-    -Wl,--wrap=_ZN11CCameraBase11CloseCameraEv
-    -Wl,--wrap=_ZN10CCameraFX313initAsyncXferEiiihPh
-    -Wl,--wrap=_ZN10CCameraFX314startAsyncXferEjjPiPbi
-    -Wl,--wrap=_ZN10CCameraFX316releaseAsyncXferEv
-    -Wl,--wrap=_ZN10CCameraFX311ResetDeviceEv
-    -Wl,--wrap=libusb_open
+        -Wl,--whole-archive
+        -Wl,--wrap=_ZN6CirBuf8ReadBuffEPhii
+        -Wl,--wrap=_ZN6CirBuf8ReadBuffEPhiiPS0_
+        -Wl,--wrap=_ZN6CirBuf10InsertBuffEPhititiii
+        -Wl,--wrap=_ZN6CirBufC1Eli
+        -Wl,--wrap=_ZN11CCameraBase12InitVariableEv
+        -Wl,--wrap=_ZN11CCameraBase11CloseCameraEv
+        -Wl,--wrap=_ZN10CCameraFX313initAsyncXferEiiihPh
+        -Wl,--wrap=_ZN10CCameraFX314startAsyncXferEjjPiPbi
+        -Wl,--wrap=_ZN10CCameraFX316releaseAsyncXferEv
+        -Wl,--wrap=_ZN10CCameraFX311ResetDeviceEv
+        -Wl,--wrap=libusb_open
     ${CMAKE_CURRENT_BINARY_DIR}/libASICamera2_redefined.a
     -Wl,--no-whole-archive
 )

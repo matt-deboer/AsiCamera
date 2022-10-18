@@ -51,7 +51,7 @@ class CirBuf
 {
     char dummy[1];
 public:
-    CirBuf(long size);
+    CirBuf(long size, int index=0);
     ~CirBuf();
 
 public:
